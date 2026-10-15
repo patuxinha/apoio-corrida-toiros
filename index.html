@@ -115,16 +115,19 @@ textarea {
   flex: 1;
   min-width: 120px;
   text-align: center;
-  padding: 0.7rem;
+  padding: 0.85rem 0.7rem;
   border-radius: 8px;
   color: white;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
 }
 .wa { background: #25d366; }
 .fb { background: #1877f2; }
 .x { background: #000; }
+.more { background: var(--vermelho); }
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -223,10 +226,12 @@ footer a { color: var(--ouro); }
 
   <div class="card">
     <h2>Partilha e convida outras pessoas</h2>
+    <p class="note">No telemóvel, WhatsApp e Facebook abrem a aplicação. No computador abrem no browser.</p>
     <div class="share-grid">
-      <a class="share-btn wa" id="shareWa" href="#" target="_blank">WhatsApp</a>
-      <a class="share-btn fb" id="shareFb" href="#" target="_blank">Facebook</a>
-      <a class="share-btn x" id="shareX" href="#" target="_blank">X / Twitter</a>
+      <button type="button" class="share-btn wa" id="shareWa">WhatsApp</button>
+      <button type="button" class="share-btn fb" id="shareFb">Facebook</button>
+      <button type="button" class="share-btn x" id="shareX">X / Twitter</button>
+      <button type="button" class="share-btn more" id="shareMore">Partilhar</button>
     </div>
   </div>
 
@@ -326,12 +331,114 @@ function atualizarContador() {
     : '';
 }
 
+const PUBLIC_URL = "https://patuxinha.github.io/apoio-corrida-toiros/";
+
+function paginaPublica() {
+  const host = location.hostname;
+  if (host.endsWith("github.io")) return location.href.split("#")[0];
+  return PUBLIC_URL;
+}
+
+function textoPartilha() {
+  return "Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa até 13 de novembro: " + paginaPublica();
+}
+
+function isIOS() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent);
+}
+function isMobile() {
+  return isIOS() || isAndroid();
+}
+
+function abrirComFallback(appUrl, webUrl) {
+  if (!isMobile()) {
+    window.open(webUrl, "_blank", "noopener,noreferrer");
+    return;
+  }
+  let saiu = false;
+  const marcar = () => { saiu = true; };
+  document.addEventListener("visibilitychange", marcar);
+  window.addEventListener("pagehide", marcar);
+  window.addEventListener("blur", marcar);
+  window.location.href = appUrl;
+  setTimeout(() => {
+    document.removeEventListener("visibilitychange", marcar);
+    window.removeEventListener("pagehide", marcar);
+    window.removeEventListener("blur", marcar);
+    if (!saiu && document.visibilityState === "visible") {
+      window.location.href = webUrl;
+    }
+  }, 1200);
+}
+
+function partilharWhatsApp() {
+  const encoded = encodeURIComponent(textoPartilha());
+  const web = "https://wa.me/?text=" + encoded;
+  if (isMobile()) {
+    abrirComFallback("whatsapp://send?text=" + encoded, web);
+  } else {
+    window.open(web, "_blank", "noopener,noreferrer");
+  }
+}
+
+function partilharFacebook() {
+  const page = encodeURIComponent(paginaPublica());
+  const web = "https://www.facebook.com/sharer/sharer.php?u=" + page;
+  if (isAndroid()) {
+    const fallback = encodeURIComponent(web);
+    window.location.href =
+      "intent://www.facebook.com/sharer/sharer.php?u=" + page +
+      "#Intent;scheme=https;package=com.facebook.katana;S.browser_fallback_url=" + fallback + ";end";
+    return;
+  }
+  if (isIOS()) {
+    abrirComFallback(
+      "fb://facewebmodal/f?href=" + encodeURIComponent(web),
+      web
+    );
+    return;
+  }
+  window.open(web, "_blank", "noopener,noreferrer");
+}
+
+function partilharX() {
+  const text = encodeURIComponent("Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa até 13 de novembro:");
+  const url = encodeURIComponent(paginaPublica());
+  const web = "https://twitter.com/intent/tweet?text=" + text + "&url=" + url;
+  if (isMobile()) {
+    window.location.href = web;
+  } else {
+    window.open(web, "_blank", "noopener,noreferrer");
+  }
+}
+
+async function partilharNativo() {
+  const page = paginaPublica();
+  const text = "Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa até 13 de novembro.";
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: "Apoio à Corrida de Toiros", text, url: page });
+      return;
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(text + " " + page);
+    alert("Link copiado. Cola-o no WhatsApp ou no Facebook.");
+  } catch (e) {
+    window.prompt("Copia este texto:", text + " " + page);
+  }
+}
+
 function setupShare() {
-  const url = encodeURIComponent(window.location.href);
-  const text = encodeURIComponent('Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa até 13 de novembro:');
-  document.getElementById('shareWa').href = `https://wa.me/?text=${text}%20${url}`;
-  document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+  document.getElementById("shareWa").addEventListener("click", partilharWhatsApp);
+  document.getElementById("shareFb").addEventListener("click", partilharFacebook);
+  document.getElementById("shareX").addEventListener("click", partilharX);
+  document.getElementById("shareMore").addEventListener("click", partilharNativo);
 }
 
 ['nome','cc','local','dia','mes','ano'].forEach(id => {
