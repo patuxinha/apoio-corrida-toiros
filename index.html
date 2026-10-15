@@ -11,6 +11,7 @@
   --ouro: #C9A227;
   --preto: #1a1a1a;
   --branco: #fafafa;
+  --cinza: #f5f5f5;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -22,115 +23,120 @@ body {
 header {
   background: linear-gradient(135deg, var(--vermelho) 0%, #5a0000 100%);
   color: white;
-  padding: 2.5rem 1rem 2rem;
+  padding: 2rem 1rem 1.5rem;
   text-align: center;
 }
-header h1 { font-size: 1.75rem; margin-bottom: 0.4rem; }
-header .sub { font-size: 1.15rem; opacity: 0.95; }
+header h1 { font-size: 1.7rem; margin-bottom: 0.3rem; }
 .badge {
   display: inline-block;
   background: var(--ouro);
   color: var(--preto);
-  padding: 0.45rem 1.1rem;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
   font-weight: 700;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
 }
-.container { max-width: 820px; margin: 1.5rem auto; padding: 0 1rem; }
+.container { max-width: 900px; margin: 1.2rem auto; padding: 0 1rem; }
 .card {
   background: white;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  padding: 1.8rem;
-  margin-bottom: 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 1.6rem;
+  margin-bottom: 1.2rem;
 }
-h2 { color: var(--vermelho); margin-bottom: 0.9rem; font-size: 1.45rem; }
-.destaque {
-  background: #fff8e1;
-  border-left: 4px solid var(--ouro);
-  padding: 1rem 1.1rem;
-  margin: 1rem 0;
-  font-style: italic;
-  border-radius: 0 8px 8px 0;
+h2 { color: var(--vermelho); margin-bottom: 0.7rem; font-size: 1.35rem; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
 }
-form label { display: block; margin: 1rem 0 0.35rem; font-weight: 600; }
-input, textarea {
+.form-grid .full { grid-column: 1 / -1; }
+label { display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.9rem; }
+input, select, textarea {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 1rem;
   font-family: inherit;
 }
-textarea { min-height: 260px; resize: vertical; }
+textarea {
+  min-height: 320px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  background: #fafafa;
+}
 .btn {
   display: block;
   width: 100%;
   background: var(--vermelho);
   color: white;
   border: none;
-  padding: 1.05rem 1.5rem;
-  font-size: 1.15rem;
+  padding: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 1.2rem;
-  transition: background 0.15s;
+  margin-top: 1rem;
 }
 .btn:hover { background: #6b0000; }
-.btn-secondary {
-  background: transparent;
-  color: var(--vermelho);
-  border: 2px solid var(--vermelho);
-  margin-top: 0.6rem;
+.email-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.8rem;
 }
-.btn-secondary:hover { background: var(--vermelho); color: white; }
+.email-options button {
+  padding: 0.7rem 0.4rem;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.email-options button:hover { background: #f5f5f5; }
 .contador {
   text-align: center;
-  font-size: 1.15rem;
-  margin: 1rem 0 0.5rem;
   color: var(--vermelho);
   font-weight: 700;
+  margin: 0.6rem 0;
 }
+.note { font-size: 0.85rem; color: #555; margin-top: 0.6rem; }
 .share-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.7rem;
-  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
 }
 .share-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.75rem 0.5rem;
-  border-radius: 10px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 8px;
   color: white;
-  font-weight: 600;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: transform 0.1s, opacity 0.15s;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
-.share-btn:hover { transform: translateY(-1px); opacity: 0.92; }
-.fb { background: #1877f2; }
 .wa { background: #25d366; }
+.fb { background: #1877f2; }
 .x { background: #000; }
-.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.tg { background: #0088cc; }
-.footer-note { font-size: 0.85rem; color: #555; margin-top: 1rem; text-align: center; }
 footer {
   text-align: center;
-  padding: 2.5rem 1rem 2rem;
+  padding: 2rem 1rem;
   background: #111;
   color: white;
   margin-top: 1rem;
 }
-footer img { max-width: 300px; height: auto; margin-bottom: 1rem; background: white; padding: 10px; border-radius: 10px; }
-footer a { color: var(--ouro); text-decoration: none; }
+footer img { max-width: 280px; height: auto; margin-bottom: 0.8rem; background: white; padding: 8px; border-radius: 8px; }
+footer a { color: var(--ouro); }
 @media (max-width: 600px) {
-  header h1 { font-size: 1.4rem; }
-  .card { padding: 1.3rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .email-options { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -138,161 +144,200 @@ footer a { color: var(--ouro); text-decoration: none; }
 
 <header>
   <h1>Consulta Pública — Corrida de Toiros em Portugal</h1>
-  <p class="sub">Círculo Cultural e Taurino Barranquenho</p>
+  <p>Círculo Cultural e Taurino Barranquenho</p>
   <div class="badge">APOIO À CANDIDATURA A PATRIMÓNIO CULTURAL IMATERIAL</div>
-  <p style="margin-top:1rem; font-size:0.95rem;">Prazo: até 13 de novembro de 2026 &nbsp;•&nbsp; Demora menos de 30 segundos</p>
+  <p style="margin-top:0.8rem; font-size:0.9rem;">Prazo até 13 de novembro de 2026 • Demora menos de 30 segundos</p>
 </header>
 
 <div class="container">
 
   <div class="card">
-    <h2>A decisão ainda não está tomada. Faz ouvir a tua voz.</h2>
-    <p>Está aberta a <strong>Consulta Pública</strong> (Anúncio n.º 278/2026) sobre o projeto de inscrição da «Corrida de Toiros em Portugal» no Inventário Nacional do Património Cultural Imaterial.</p>
-    <p>Qualquer pessoa pode apresentar observações ao Património Cultural, I.P. até <strong>13 de novembro de 2026</strong>.</p>
-    <div class="destaque">
-      Em Barrancos, a tauromaquia é mais do que uma tradição: é identidade, cultura e resistência. A Fêra une gerações, a praça ergue-se todos os anos com as mãos da comunidade, e a exceção legal dos toiros de morte (Lei n.º 19/2002) consagra uma prática secular que define o nosso povo.
-    </div>
-    <p>Reconhecer a Corrida de Toiros como património cultural imaterial é salvaguardar a diversidade cultural portuguesa, a memória coletiva e a transmissão de saberes às gerações futuras.</p>
-    <p><strong>Participa agora e apoia a candidatura.</strong></p>
+    <h2>Faz ouvir a tua voz</h2>
+    <p>Podes participar na consulta pública enviando as tuas observações de <strong>apoio</strong> diretamente para o Património Cultural, I.P.</p>
+    <div class="contador" id="contador"></div>
   </div>
 
   <div class="card">
     <h2>Os teus dados para o apoio formal</h2>
-    <p style="font-size:0.9rem; color:#555; margin-bottom:0.8rem;">Usados apenas no teu dispositivo para preencher a mensagem. Não são enviados nem guardados.</p>
+    <p class="note">São usados apenas no teu dispositivo para preencher a mensagem. Não são enviados nem guardados.</p>
 
-    <form id="apoioForm" onsubmit="return false;">
-      <label for="nome">Nome completo</label>
-      <input type="text" id="nome" placeholder="O teu nome" required>
+    <div class="form-grid" style="margin-top:1rem;">
+      <div>
+        <label for="nome">Nome completo *</label>
+        <input type="text" id="nome" placeholder="O teu nome">
+      </div>
+      <div>
+        <label for="cc">CC / NIF *</label>
+        <input type="text" id="cc" placeholder="Número do CC ou NIF">
+      </div>
+      <div>
+        <label for="local">Local *</label>
+        <input type="text" id="local" placeholder="Ex: Barrancos, Lisboa...">
+      </div>
+      <div style="display:flex; gap:0.5rem;">
+        <div style="flex:1;">
+          <label for="dia">Dia</label>
+          <input type="number" id="dia" min="1" max="31" value="15">
+        </div>
+        <div style="flex:1.4;">
+          <label for="mes">Mês</label>
+          <select id="mes">
+            <option value="janeiro">janeiro</option>
+            <option value="fevereiro">fevereiro</option>
+            <option value="março">março</option>
+            <option value="abril">abril</option>
+            <option value="maio">maio</option>
+            <option value="junho">junho</option>
+            <option value="julho">julho</option>
+            <option value="agosto">agosto</option>
+            <option value="setembro">setembro</option>
+            <option value="outubro" selected>outubro</option>
+            <option value="novembro">novembro</option>
+            <option value="dezembro">dezembro</option>
+          </select>
+        </div>
+        <div style="flex:1;">
+          <label for="ano">Ano</label>
+          <input type="number" id="ano" value="2026">
+        </div>
+      </div>
+    </div>
 
-      <label for="localidade">Localidade</label>
-      <input type="text" id="localidade" placeholder="Ex: Barrancos, Lisboa..." required>
+    <h3 style="margin:1.4rem 0 0.5rem; font-size:1.1rem;">A tua mensagem de apoio formal</h3>
+    <p class="note">Preparámos a minuta de apoio formal. Os dados acima são inseridos automaticamente. Podes rever e alterar o texto antes de o enviares.</p>
+    <textarea id="mensagem"></textarea>
 
-      <label for="mensagem">Mensagem de apoio (podes editar)</label>
-      <textarea id="mensagem"></textarea>
+    <button class="btn" onclick="abrirOpcoesEmail()">ABRIR EMAIL E ENVIAR APOIO</button>
 
-      <button type="button" class="btn" onclick="enviarEmail()">ABRIR EMAIL E ENVIAR APOIO</button>
-      <button type="button" class="btn btn-secondary" onclick="reporTexto()">Repor texto-base</button>
-    </form>
+    <div id="emailOptions" style="display:none; margin-top:1rem;">
+      <p style="font-weight:600; margin-bottom:0.5rem;">Como queres abrir o email?</p>
+      <div class="email-options">
+        <button onclick="abrirGmail()">GMAIL</button>
+        <button onclick="abrirOutlook()">OUTLOOK WEB</button>
+        <button onclick="abrirAppEmail()">APP DE EMAIL</button>
+      </div>
+    </div>
 
-    <div class="contador" id="contador"></div>
-    <p class="footer-note">
-      O email abre imediatamente no teu dispositivo. Confirma o envio.<br>
-      Destinatário: <strong>inpci@patrimoniocultural.gov.pt</strong>
-    </p>
+    <p class="note">O email será aberto no teu dispositivo. Antes de enviares, poderás rever ou alterar novamente a mensagem.</p>
   </div>
 
   <div class="card">
     <h2>Partilha e convida outras pessoas</h2>
-    <p>Ajuda a mobilizar mais apoios. Partilha esta página nas redes sociais:</p>
-
     <div class="share-grid">
-      <a class="share-btn wa" id="shareWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="share-btn fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebook</a>
-      <a class="share-btn x" id="shareX" href="#" target="_blank" rel="noopener">X / Twitter</a>
-      <a class="share-btn tg" id="shareTg" href="#" target="_blank" rel="noopener">Telegram</a>
-      <a class="share-btn ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a class="share-btn wa" id="shareWa" href="#" target="_blank">WhatsApp</a>
+      <a class="share-btn fb" id="shareFb" href="#" target="_blank">Facebook</a>
+      <a class="share-btn x" id="shareX" href="#" target="_blank">X / Twitter</a>
     </div>
-
-    <button class="btn btn-secondary" style="margin-top:1rem;" onclick="copiarLink()">Copiar link desta página</button>
-    <p id="linkFeedback" style="text-align:center; margin-top:0.6rem; color:var(--vermelho); font-weight:600;"></p>
-  </div>
-
-  <div class="card">
-    <h2>Porquê apoiar?</h2>
-    <ul style="padding-left:1.2rem;">
-      <li>A tauromaquia faz parte da identidade cultural de dezenas de concelhos portugueses.</li>
-      <li>Em Barrancos, os tradicionais festejos taurinos e a Fêra são o coração da vida comunitária.</li>
-      <li>A exceção dos toiros de morte foi legalmente consagrada em 2002.</li>
-      <li>A inscrição no Inventário Nacional é condição prévia para candidaturas à Lista Representativa da UNESCO.</li>
-      <li>A cultura reconhece-se, salvaguarda-se e transmite-se.</li>
-    </ul>
-    <p style="margin-top:1rem;"><a href="https://diariodarepublica.pt/dr/detalhe/anuncio/278-2026-1176765973" target="_blank" rel="noopener">Ver Anúncio n.º 278/2026 no Diário da República</a></p>
   </div>
 
 </div>
 
 <footer>
-  <img src="logo-circulo-barrancos.jpg" alt="Logo Círculo Cultural e Taurino Barranquenho / A Fêra de Barrancos">
-  <p style="margin:0.5rem 0; font-size:1.2rem;"><strong>Círculo Cultural e Taurino Barranquenho</strong></p>
-  <p style="margin:0.4rem 0;">
-    <a href="https://aferadebarrancos.com/" target="_blank" rel="noopener">aferadebarrancos.com</a>
-  </p>
-  <p style="margin:0.6rem 0; font-size:0.9rem; opacity:0.85;">
-    Barrancos · A defesa da cultura e das tradições seculares do Povo de Barrancos,<br>
-    a excepção dos toiros de morte, a nossa história e memória
-  </p>
+  <img src="logo-circulo-barrancos.jpg" alt="Logo Círculo Cultural e Taurino Barranquenho">
+  <p><strong>Círculo Cultural e Taurino Barranquenho</strong></p>
+  <p style="margin:0.4rem 0;"><a href="https://aferadebarrancos.com/" target="_blank">aferadebarrancos.com</a></p>
+  <p style="font-size:0.85rem; opacity:0.8; margin-top:0.5rem;">Barrancos · Defesa da cultura e das tradições seculares do Povo de Barrancos</p>
 </footer>
 
 <script>
-const textoBase = `Exmo. Senhor
-Diretor do Património Cultural, I.P.
+const textoBase = `Exmo. Senhor Presidente
+do Conselho Diretivo
+do Património Cultural, I.P.
 
-Venho por este meio manifestar o meu total apoio à inscrição da «Corrida de Toiros em Portugal» no Inventário Nacional do Património Cultural Imaterial, no âmbito da Consulta Pública do Anúncio n.º 278/2026.
+Assunto: Proc.º n.º 0000000174 | Consulta pública - Apoio - Corrida de Toiros
 
-A tauromaquia constitui uma expressão cultural secular profundamente enraizada na identidade de muitas comunidades portuguesas. Em Barrancos, a Fêra e os tradicionais festejos taurinos — incluindo a exceção legal dos toiros de morte (Lei n.º 19/2002) — são o coração da vida cultural, social e económica da vila. A praça é erguida todos os anos com as mãos de toda a comunidade, unindo gerações na defesa de um legado ancestral que se perde no tempo.
+[NOME], identificado(a) pelo CC/NIF n.º [CC], tendo tomado conhecimento, através do Anúncio n.º 278/2026, publicado no Diário da República n.º 192/2026, 2.ª Série, de 2 de outubro de 2026, da abertura da consulta pública relativa à proposta de inscrição da «Corrida de Toiros em Portugal» no Inventário Nacional do Património Cultural Imaterial, vem, ao abrigo do disposto no artigo 14.º do Decreto-Lei n.º 139/2009, de 15 de junho, na sua redação atual, apresentar a sua pronúncia favorável e apoio formal à referida proposta de inscrição.
 
-Reconhecer este património é salvaguardar a diversidade cultural portuguesa, a memória coletiva e a transmissão de saberes e práticas às gerações futuras, em conformidade com os princípios da Convenção da UNESCO para a Salvaguarda do Património Cultural Imaterial.
+O que faz nos seguintes termos e fundamentos:
 
-Agradeço a atenção dispensada e confio que a decisão final reconheça o valor cultural desta prática.
+A tauromaquia constitui uma expressão cultural secular profundamente enraizada na identidade de muitas comunidades portuguesas. Em Barrancos, os tradicionais festejos taurinos e a Fêra são o coração da vida cultural, social e económica da vila. A praça é erguida todos os anos com as mãos de toda a comunidade, unindo gerações na defesa de um legado ancestral.
 
-Com os melhores cumprimentos,`;
+A exceção legal dos toiros de morte, consagrada na Lei n.º 19/2002, de 31 de julho, reconhece e protege uma prática histórica específica de Barrancos que faz parte integrante da memória coletiva e da identidade do povo barranquenho.
+
+Reconhecer a «Corrida de Toiros em Portugal» como património cultural imaterial é salvaguardar a diversidade cultural portuguesa, a transmissão de saberes e práticas às gerações futuras, e o valor identitário que esta expressão cultural representa para milhares de portugueses, em conformidade com os princípios da Convenção da UNESCO para a Salvaguarda do Património Cultural Imaterial.
+
+A cultura reconhece-se, salvaguarda-se e transmite-se. A inscrição no Inventário Nacional constitui o reconhecimento devido a uma prática viva que continua a unir comunidades e a definir identidades locais.
+
+Nestes termos, solicito que a presente pronúncia favorável seja considerada no âmbito do processo n.º 0000000174 e ponderada na decisão relativa à inscrição da «Corrida de Toiros em Portugal» no Inventário Nacional do Património Cultural Imaterial.
+
+Com os melhores cumprimentos,
+
+[LOCAL], [DIA] de [MES] de [ANO]
+
+[NOME]`;
 
 function atualizarMensagem() {
-  const nome = document.getElementById('nome').value.trim() || '[Nome]';
-  const local = document.getElementById('localidade').value.trim() || '[Localidade]';
-  const hoje = new Date().toLocaleDateString('pt-PT');
-  document.getElementById('mensagem').value = textoBase + `\n\n${nome}\n${local}\n${hoje}`;
+  const nome = document.getElementById('nome').value.trim() || '[NOME]';
+  const cc = document.getElementById('cc').value.trim() || '[CC]';
+  const local = document.getElementById('local').value.trim() || '[LOCAL]';
+  const dia = document.getElementById('dia').value || '[DIA]';
+  const mes = document.getElementById('mes').value || '[MES]';
+  const ano = document.getElementById('ano').value || '[ANO]';
+
+  let texto = textoBase
+    .replace(/\[NOME\]/g, nome)
+    .replace(/\[CC\]/g, cc)
+    .replace(/\[LOCAL\]/g, local)
+    .replace(/\[DIA\]/g, dia)
+    .replace(/\[MES\]/g, mes)
+    .replace(/\[ANO\]/g, ano);
+
+  document.getElementById('mensagem').value = texto;
 }
 
-function reporTexto() { atualizarMensagem(); }
-
-function enviarEmail() {
+function abrirOpcoesEmail() {
   const nome = document.getElementById('nome').value.trim();
-  const local = document.getElementById('localidade').value.trim();
-  if (!nome || !local) {
-    alert('Por favor preenche o nome e a localidade.');
+  const cc = document.getElementById('cc').value.trim();
+  const local = document.getElementById('local').value.trim();
+  if (!nome || !cc || !local) {
+    alert('Por favor preenche o nome, o CC/NIF e o local.');
     return;
   }
   atualizarMensagem();
-  const assunto = encodeURIComponent('Consulta Pública 278/2026 | Apoio à inscrição da Corrida de Toiros em Portugal no INPCI');
-  const corpo = encodeURIComponent(document.getElementById('mensagem').value);
-  const mailto = `mailto:inpci@patrimoniocultural.gov.pt?subject=${assunto}&body=${corpo}`;
-  window.location.href = mailto;
+  document.getElementById('emailOptions').style.display = 'block';
 
   let count = parseInt(localStorage.getItem('apoios') || '0') + 1;
   localStorage.setItem('apoios', count);
   atualizarContador();
 }
 
+function getMailto(type) {
+  const assunto = encodeURIComponent('Proc.º n.º 0000000174 | Consulta pública - Apoio - Corrida de Toiros');
+  const corpo = encodeURIComponent(document.getElementById('mensagem').value);
+  const to = 'inpci@patrimoniocultural.gov.pt';
+
+  if (type === 'gmail') {
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${assunto}&body=${corpo}`;
+  }
+  if (type === 'outlook') {
+    return `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${assunto}&body=${corpo}`;
+  }
+  return `mailto:${to}?subject=${assunto}&body=${corpo}`;
+}
+
+function abrirGmail() { window.open(getMailto('gmail'), '_blank'); }
+function abrirOutlook() { window.open(getMailto('outlook'), '_blank'); }
+function abrirAppEmail() { window.location.href = getMailto('app'); }
+
 function atualizarContador() {
   const count = parseInt(localStorage.getItem('apoios') || '0');
   document.getElementById('contador').textContent = count > 0
-    ? `${count.toLocaleString('pt-PT')} pessoas já prepararam o seu apoio nesta página`
+    ? `${count.toLocaleString('pt-PT')} participações iniciadas`
     : '';
 }
 
 function setupShare() {
   const url = encodeURIComponent(window.location.href);
-  const text = encodeURIComponent('Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa na consulta pública até 13 de novembro: ');
-  const fullText = encodeURIComponent('Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa na consulta pública até 13 de novembro de 2026!');
-
-  document.getElementById('shareWa').href = `https://wa.me/?text=${fullText}%20${url}`;
+  const text = encodeURIComponent('Apoia a inscrição da Corrida de Toiros em Portugal como Património Cultural Imaterial. Participa até 13 de novembro:');
+  document.getElementById('shareWa').href = `https://wa.me/?text=${text}%20${url}`;
   document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${fullText}&url=${url}`;
-  document.getElementById('shareTg').href = `https://t.me/share/url?url=${url}&text=${fullText}`;
+  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
 }
 
-function copiarLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    document.getElementById('linkFeedback').textContent = 'Link copiado!';
-    setTimeout(() => document.getElementById('linkFeedback').textContent = '', 2500);
-  }).catch(() => {
-    document.getElementById('linkFeedback').textContent = 'Copia o endereço da barra do browser.';
-  });
-}
+['nome','cc','local','dia','mes','ano'].forEach(id => {
+  document.getElementById(id).addEventListener('input', atualizarMensagem);
+});
 
-document.getElementById('nome').addEventListener('input', atualizarMensagem);
-document.getElementById('localidade').addEventListener('input', atualizarMensagem);
 atualizarMensagem();
 atualizarContador();
 setupShare();
